@@ -6,6 +6,9 @@
     --accent: #6b82ff;
     --bg-start: #f3f7fb;
     --bg-end: #eef4f8;
+    /* coordinate label defaults (kept here to simplify overrides) */
+    --rank-label-width: 24px;
+    --rank-label-gap: 6px;
 }
 
 /* Page base: set height and system font */
@@ -48,12 +51,7 @@ h1 {
     letter-spacing: 0.2px;
 }
 
-/* Join form layout */
-form {
-    display: flex;
-    gap: 8px;
-    align-items: center
-}
+/* The join form is handled by #join-form rules below; no generic form layout. */
 
 /* Form inputs */
 form input {
@@ -264,11 +262,7 @@ button {
     }
 }
 
-/* Coordinate label variables */
-:root {
-    --rank-label-width: 24px;
-    --rank-label-gap: 6px
-}
+/* Coordinate label variables consolidated into the main :root above. */
 
 /* Rank-row (adds left-side numeric labels) */
 .rank-row {
@@ -302,4 +296,85 @@ button {
     text-align: center;
     color: #334e68;
     font-weight: 600
+}
+
+/* join form layout is consolidated below */
+
+/* join form: consolidated grid layout and responsive rules */
+#join-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+    max-width: 520px;
+    grid-auto-flow: dense;
+}
+
+#join-form>#room {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#join-form>#generate {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#join-form>#name {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+/* hide only the name field when local mode is selected; generate/room disabled via JS */
+#join-form.local-mode> :is(#name, #generate, #room) {
+    display: none;
+}
+
+/* local names area spans full width */
+#join-form>#local-names {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#join-form>#hcaptcha-container {
+    grid-column: 1 / -1;
+}
+
+/* Join button layout */
+#join-form>#join-btn {
+    grid-column: 1 / -1;
+}
+
+#join-form.local-mode>#join-btn {
+    grid-column: 1 / -1;
+    grid-row: 3;
+}
+
+#join-form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+}
+
+#join-form button {
+    padding: 8px 12px;
+}
+
+@media (max-width: 520px) {
+    #join-form {
+        grid-template-columns: 1fr;
+    }
+
+    #join-form>#generate,
+    #join-form>#join-btn {
+        grid-column: 1;
+        width: 100%;
+    }
+
+    #join-form>#local-names {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
