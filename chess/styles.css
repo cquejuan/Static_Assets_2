@@ -17,6 +17,8 @@
     /* coordinate label defaults (kept here to simplify overrides) */
     --rank-label-width: 24px;
     --rank-label-gap: 6px;
+    --min-board-size: 36px;
+    --max-board-size: 64px;
 }
 
 /* Page base: set height and system font */
@@ -120,6 +122,10 @@ button {
     border-radius: 10px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(250, 250, 250, 0.6));
     box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    width: 100%;
+    max-width: calc(8 * var(--board-size) + var(--rank-label-width) + var(--rank-label-gap));
+    box-sizing: border-box;
+    --square-size: var(--board-size);
 }
 
 /* Rank row inside board (left label + rank) */
@@ -129,12 +135,12 @@ button {
 
 /* Square cell */
 .square {
-    width: var(--board-size);
-    height: var(--board-size);
+    width: var(--square-size);
+    height: var(--square-size);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    font-size: calc(var(--square-size) * 0.56);
     transition: transform 0.12s ease, box-shadow 0.12s ease;
     user-select: none;
 }
@@ -164,17 +170,14 @@ button {
 /* Chess piece glyph styling */
 .piece {
     cursor: pointer;
-    font-size: 30px
+    font-size: inherit;
+    line-height: 1;
 }
 
 /* Responsive: larger board/piece sizes on wide screens */
 @media (min-width:720px) {
     :root {
         --board-size: 64px
-    }
-
-    .piece {
-        font-size: 36px
     }
 }
 
@@ -300,10 +303,11 @@ button {
 }
 
 .file-label {
-    width: var(--board-size);
+    width: var(--square-size);
     text-align: center;
     color: #334e68;
-    font-weight: 600
+    font-weight: 600;
+    font-size: calc(var(--square-size) * 0.35);
 }
 
 /* join form layout is consolidated below */
@@ -417,6 +421,19 @@ button {
 
 #board.rotated .piece {
     transform: rotate(180deg);
+}
+
+/* Responsive square sizing for small screens */
+@media (max-width: 720px) {
+    :root {
+        --rank-label-width: 20px;
+    }
+    #board {
+        max-width: 100%;
+        --square-size: clamp(var(--min-board-size), calc((100vw - 48px - var(--rank-label-width) - var(--rank-label-gap)) / 8), var(--max-board-size));
+    }
+    .rank-label { font-size: 12px; }
+    .file-label { font-size: calc(var(--square-size) * 0.35); }
 }
 
 @media (max-width: 520px) {
