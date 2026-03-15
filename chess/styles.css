@@ -434,12 +434,19 @@ button {
     :root {
         --rank-label-width: 20px;
     }
+
     #board {
         max-width: 100%;
         --square-size: clamp(var(--min-board-size), calc((100vw - 48px - var(--rank-label-width) - var(--rank-label-gap)) / 8), var(--max-board-size));
     }
-    .rank-label { font-size: 12px; }
-    .file-label { font-size: calc(var(--square-size) * 0.35); }
+
+    .rank-label {
+        font-size: 12px;
+    }
+
+    .file-label {
+        font-size: calc(var(--square-size) * 0.35);
+    }
 }
 
 @media (max-width: 520px) {
