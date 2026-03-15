@@ -385,6 +385,40 @@ button {
     padding: 8px 12px;
 }
 
+#join-form>#terms {
+    grid-column: 1 / 2;
+    grid-row: 4;
+}
+
+#join-form>#terms label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+#join-form>#terms input[type="checkbox"] {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+}
+
+/* Board rotation styles */
+#board {
+    transition: transform 0.25s ease;
+    transform-origin: center center;
+}
+
+#board.rotated {
+    transform: rotate(180deg);
+}
+
+#board.rotated .piece {
+    transform: rotate(180deg);
+}
+
 @media (max-width: 520px) {
     #join-form {
         grid-template-columns: 1fr;
