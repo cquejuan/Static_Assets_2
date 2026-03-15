@@ -1,3 +1,11 @@
+/*
+    CSS overview:
+    - Root variables set board sizing and theme colors.
+    - Layout and container styles center the app and create the card UI.
+    - Board styles (.square, .light, .dark, .selected) control chessboard visuals and interactions.
+    - Moves/history panel and responsive rules handle the right-side move list.
+    - Coordinate labels render file/rank markers around the board.
+*/
 /* CSS: variables, layout, board visuals, history panel, labels */
 
 /* Root variables: board size and theme colors */
@@ -313,6 +321,21 @@ button {
 #join-form>#room {
     grid-column: 1;
     grid-row: 1;
+}
+
+#join-form>#terms label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+#join-form>#terms input[type="checkbox"] {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
 }
 
 #join-form>#generate {
