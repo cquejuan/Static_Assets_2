@@ -1,1 +1,1 @@
-# Static_Assets_2
+static.thybrainer.com
