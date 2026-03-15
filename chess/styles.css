@@ -167,6 +167,12 @@ button {
     background: rgba(16, 185, 129, 0.12)
 }
 
+/* Highlight for legal move targets */
+.move-target {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.95);
+    border-radius: 6px;
+}
+
 /* Chess piece glyph styling */
 .piece {
     cursor: pointer;
