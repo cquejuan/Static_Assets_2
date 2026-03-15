@@ -310,26 +310,71 @@ button {
     grid-auto-flow: dense;
 }
 
-#join-form > #room { grid-column: 1; grid-row: 1; }
-#join-form > #generate { grid-column: 2; grid-row: 1; }
-#join-form > #name { grid-column: 1; grid-row: 2; }
+#join-form>#room {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#join-form>#generate {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#join-form>#name {
+    grid-column: 1;
+    grid-row: 2;
+}
 
 /* hide only the name field when local mode is selected; generate/room disabled via JS */
-#join-form.local-mode > #name { display: none; }
+#join-form.local-mode> :is(#name, #generate, #room) {
+    display: none;
+}
 
 /* local names area spans full width */
-#join-form > #local-names { grid-column: 1 / -1; display: flex; gap: 8px; align-items: center; }
-#join-form > #hcaptcha-container { grid-column: 1 / -1; }
+#join-form>#local-names {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#join-form>#hcaptcha-container {
+    grid-column: 1 / -1;
+}
 
 /* Join button layout */
-#join-form > #join-btn { grid-column: 1 / -1; }
-#join-form.local-mode > #join-btn { grid-column: 1 / -1; grid-row: 3; }
+#join-form>#join-btn {
+    grid-column: 1 / -1;
+}
 
-#join-form input { box-sizing: border-box; width: 100%; padding: 8px; }
-#join-form button { padding: 8px 12px; }
+#join-form.local-mode>#join-btn {
+    grid-column: 1 / -1;
+    grid-row: 3;
+}
+
+#join-form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+}
+
+#join-form button {
+    padding: 8px 12px;
+}
 
 @media (max-width: 520px) {
-    #join-form { grid-template-columns: 1fr; }
-    #join-form > #generate, #join-form > #join-btn { grid-column: 1; width: 100%; }
-    #join-form > #local-names { flex-direction: column; align-items: stretch; }
+    #join-form {
+        grid-template-columns: 1fr;
+    }
+
+    #join-form>#generate,
+    #join-form>#join-btn {
+        grid-column: 1;
+        width: 100%;
+    }
+
+    #join-form>#local-names {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
